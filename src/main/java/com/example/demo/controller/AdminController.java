@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.Models.PlaceOrder;
 import com.example.demo.Models.Product;
@@ -45,13 +47,18 @@ public class AdminController {
 	private CartRepository cartRepository;
 	
 	@PostMapping("/addProduct")
-	public ResponseEntity<?> addProduct(@Valid @RequestBody ProductDto productDto){
+	public ResponseEntity<?> addProduct( 
+			   @RequestParam(name="file") MultipartFile prodImage,
+			   @RequestParam(name="productname") String productname,
+			   @RequestParam(name="price") String price,
+			   @RequestParam(name="description") String description,
+			   @RequestParam(name="quantity") String quantity) throws IOException{
 		Product product=new Product();
-		product.setDescription(productDto.getDescription());
-		product.setProductname(productDto.getProductname());
-		product.setPrice(productDto.getPrice());
-		product.setQuantity(productDto.getQuantity());
-		product.setProductimage(productDto.getProductimage());
+		product.setProductname(productname);
+		product.setDescription(description);
+		product.setPrice(Double.parseDouble(price));
+		product.setQuantity(Integer.parseInt(quantity));
+		product.setProductimage(prodImage.getBytes());
 		productRepository.save(product);
 		return ResponseEntity.ok(new ProductResponse("Product Saved Succeffuly",productRepository.findAll()));	
 	}
@@ -67,20 +74,25 @@ public class AdminController {
 				,productRepository.findAll()));		
 	}
 	@PutMapping("/updProduct")
-	public ResponseEntity<?> updProduct(@Valid @RequestBody ProductDto productDto , @RequestParam (name="productid") int productid){
+	public ResponseEntity<?> updProduct(@RequestParam(name="file",required = false) MultipartFile prodImage,
+			   @RequestParam(name="productname") String productname,
+			   @RequestParam(name="price") String price,
+			   @RequestParam(name="description") String description,
+			   @RequestParam(name="quantity") String quantity,
+			   @RequestParam (name="productid") int productid) throws IOException{
 		Product p1=productRepository.findByProductid(productid);
 		Product p2=productRepository.findByProductid(productid);
-		if(productDto.getProductimage()!=null){
-			p1.setDescription(productDto.getDescription());
-			p1.setProductname(productDto.getProductname());
-			p1.setPrice(productDto.getPrice());
-			p1.setQuantity(productDto.getQuantity());
-			p1.setProductimage(productDto.getProductimage());}
+		if(prodImage!=null){
+			p1.setProductname(productname);
+			p1.setDescription(description);
+			p1.setPrice(Double.parseDouble(price));
+			p1.setQuantity(Integer.parseInt(quantity));
+			p1.setProductimage(prodImage.getBytes());}
 		else{
-			p1.setDescription(productDto.getDescription());
-			p1.setProductname(productDto.getProductname());
-			p1.setPrice(productDto.getPrice());
-			p1.setQuantity(productDto.getQuantity());
+			p1.setProductname(productname);
+			p1.setDescription(description);
+			p1.setPrice(Double.parseDouble(price));
+			p1.setQuantity(Integer.parseInt(quantity));
 			p1.setProductimage(p2.getProductimage());}
 		productRepository.save(p1);
 		return ResponseEntity.ok(new ProductResponse("Your Product with ID " + productid + " updated succeffuly",p1));

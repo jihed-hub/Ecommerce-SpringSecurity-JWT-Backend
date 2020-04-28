@@ -1,16 +1,19 @@
 package com.example.demo.payload.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductDto {
 	
 	private int productid;
 	private String description;
 	private String productname;
-	private double price;
-	private int quantity;
-	private byte[] productimage;	
-	public ProductDto() {}	
-	public ProductDto(int productid, String description, String productname, double price, int quantity,
-			byte[] productimage) {
+	private String price;
+	private String quantity;
+	private MultipartFile productimage;	
+	public ProductDto() {}
+	public ProductDto(int productid, String description, String productname, String price, String quantity,
+			MultipartFile productimage) {
+		super();
 		this.productid = productid;
 		this.description = description;
 		this.productname = productname;
@@ -18,7 +21,6 @@ public class ProductDto {
 		this.quantity = quantity;
 		this.productimage = productimage;
 	}
-
 	public int getProductid() {
 		return productid;
 	}
@@ -37,27 +39,24 @@ public class ProductDto {
 	public void setProductname(String productname) {
 		this.productname = productname;
 	}
-	public double getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
-	public byte[] getProductimage() {
+	public MultipartFile getProductimage() {
 		return productimage;
 	}
-	public void setProductimage(byte[] productimage) {
+	public void setProductimage(MultipartFile productimage) {
 		this.productimage = productimage;
 	}
 	
 	
-	
-	
-
 }

@@ -91,7 +91,7 @@ public class UserController {
 	public ResponseEntity<?> getProduct(){
 		return ResponseEntity.ok(new ProductResponse("Your Products are in the List Below",productRepository.findAll()));
 	}
-	@PostMapping("/addProductToCart")
+	@GetMapping("/addProductToCart")
 	public ResponseEntity<?> addProductToCart(@RequestParam("productid") int productid,Principal p){
 		User user=getCurrentUser(p);
 		Product product=productRepository.findByProductid(productid);
@@ -114,7 +114,7 @@ public class UserController {
 		User user=getCurrentUser(p);
 		return ResponseEntity.ok(new CartResponse("cart view",cartRepository.findByEmail(user.getEmail())));		
 	}
-	@PutMapping("/updCart")
+	@GetMapping("/updCart")
 	public ResponseEntity<?> updateCart(@RequestParam("cartId") int cartId,@RequestParam("quantity")int quantity,Principal p){
 		User user=getCurrentUser(p);
 		Cart cart=cartRepository.findByCartIdAndEmail(cartId, user.getEmail());
@@ -130,7 +130,7 @@ public class UserController {
 		return ResponseEntity.ok(new CartResponse("the cart has been deleted succeffuly",cartRepository.findByEmail(user.getEmail())));
 
 	}
-	@PostMapping("/placeOrder")
+	@GetMapping("/placeOrder")
 	public ResponseEntity<?> placeOrder(Principal p){
 		User user=getCurrentUser(p);
 		PlaceOrder po=new PlaceOrder();

@@ -9,4 +9,5 @@ import com.example.demo.Models.PlaceOrder;
 public interface PlaceOrderRepository extends JpaRepository<PlaceOrder,Long> {
 
 	PlaceOrder findByOrderId(int orderId);
+	
 }

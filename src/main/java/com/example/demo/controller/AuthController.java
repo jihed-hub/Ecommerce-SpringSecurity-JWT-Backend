@@ -34,7 +34,7 @@ import com.example.demo.payload.dto.LoginRequest;
 import com.example.demo.payload.dto.SignupRequest;
 
 
-@CrossOrigin()
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
