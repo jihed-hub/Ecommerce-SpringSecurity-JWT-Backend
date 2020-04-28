@@ -7,13 +7,13 @@ public class ViewOrder {
 	private int orderId;
 	private String orderBy;
 	private String orderStatus;
-	private List<Cart> cartList = new ArrayList<>();
+	private List<Cart> products = new ArrayList<>();
 	public ViewOrder() {}
-	public ViewOrder(int orderId, String orderBy, String orderStatus, List<Cart> cartList) {
+	public ViewOrder(int orderId, String orderBy, String orderStatus, List<Cart> products) {
 		this.orderId = orderId;
 		this.orderBy = orderBy;
 		this.orderStatus = orderStatus;
-		this.cartList = cartList;}
+		this.products = products;}
 	public int getOrderId() {
 		return orderId;
 	}
@@ -32,10 +32,11 @@ public class ViewOrder {
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	public List<Cart> getCartList() {
-		return cartList;
+	public List<Cart> getProducts() {
+		return products;
 	}
-	public void setCartList(List<Cart> cartList) {
-		this.cartList = cartList;
+	public void setProducts(List<Cart> products) {
+		this.products = products;
 	}
+	
 }

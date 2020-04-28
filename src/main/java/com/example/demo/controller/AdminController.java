@@ -97,8 +97,8 @@ public class AdminController {
 		productRepository.save(p1);
 		return ResponseEntity.ok(new ProductResponse("Your Product with ID " + productid + " updated succeffuly",p1));
 	}
-	@PutMapping(path = { "/updOrder/{orderId}/{orderStatus}" })
-	public ResponseEntity<?> updOrder(@PathVariable("orderId") int orderid, @PathVariable("orderStatus") String orderstatus){
+	@PostMapping("/updOrder")
+	public ResponseEntity<?> updOrder(@RequestParam(name="orderId") int orderid, @RequestParam(name="orderStatus") String orderstatus){
 		PlaceOrder po=placeOrderRepository.findByOrderId(orderid);
 		po.setOrderStatus(orderstatus);
 		placeOrderRepository.save(po);
@@ -113,7 +113,7 @@ public class AdminController {
 			vo.setOrderId(po.getOrderId());
 			vo.setOrderBy(po.getEmail());
 			vo.setOrderStatus(po.getOrderStatus());
-			vo.setCartList(cartRepository.findAllByOrderId(po.getOrderId()));
+			vo.setProducts(cartRepository.findAllByOrderId(po.getOrderId()));
 			viewOrders.add(vo);
 		});
 		return ResponseEntity.ok(new ViewOrderResponse("this is all the Orders", viewOrders));		

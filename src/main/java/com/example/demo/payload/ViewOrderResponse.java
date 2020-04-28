@@ -9,22 +9,24 @@ import com.example.demo.Models.ViewOrder;
 public class ViewOrderResponse {
 
 	private String message;
-	private List<ViewOrder> orderList=new ArrayList<>();
+	private List<ViewOrder> orderlist=new ArrayList<>();
 	public ViewOrderResponse() {}
-	public ViewOrderResponse(String message,List<ViewOrder> orderList) {
+	public ViewOrderResponse(String message, List<ViewOrder> orderlist) {
+		super();
 		this.message = message;
-		this.orderList = orderList;}
-	
+		this.orderlist = orderlist;
+	}
 	public String getMessage() {
 		return message;
 	}
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public List<ViewOrder> getOrderList() {
-		return orderList;
+	public List<ViewOrder> getOrderlist() {
+		return orderlist;
 	}
-	public void setOrderList(List<ViewOrder> orderList) {
-		this.orderList = orderList;
+	public void setOrderlist(List<ViewOrder> orderlist) {
+		this.orderlist = orderlist;
 	}
+	
 }
