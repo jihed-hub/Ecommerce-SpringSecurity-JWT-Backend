@@ -6,5 +6,4 @@ L'application est implémentée en deux parties:
 la gestion de session à l'aide de jetons JWT chiffrés et Spring Security.
 2-Front End: interfaces utilisateur conçues et développées à l'aide d'Angular 8 utilisant Http Interceptor et des services Web pour gérer
 les actions appropriées des utilisateurs. 
-Les technologies utilisés sont : Angular 8 , Typescript SpringBoot Hibernate with JPA , MySQL , JWT Token (Session management).
-s
+Les technologies utilisés sont : Angular 8 , Typescript SpringBoot  Spring Security Hibernate with JPA , MySQL , JWT Token (Session management).
